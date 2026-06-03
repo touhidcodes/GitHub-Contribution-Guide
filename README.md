@@ -1,14 +1,12 @@
 # GitHub Collaboration & Contribution Workflow
 
-## Complete Industry Standard Guide for Team Collaboration
-
 ---
 
-# Introduction
+## Introduction
 
 Modern software engineering is fundamentally collaborative. Whether you are working in a startup, enterprise company, freelance team, or open-source ecosystem, understanding Git and GitHub collaboration workflow is mandatory.
 
-This session provides a complete practical guide for:
+This documentation provides a complete practical guide for:
 
 - Working on team projects
 - Managing source code professionally
@@ -20,18 +18,18 @@ This session provides a complete practical guide for:
 
 ---
 
-# Table of Contents
+## Table of Contents
 
-1. Git Fundamentals
-2. GitHub Collaboration Architecture
-3. Installing & Configuring Git
-4. Authentication Setup (SSH)
-5. Creating Personal Repositories
-6. Forking Existing Repositories
-7. Cloning Repositories
-8. Branch Management
-9. Working on Features
-10. Commit Best Practices
+1. [Git Fundamentals](#1-git-fundamentals)
+2. [GitHub Collaboration Architecture](#2-github-collaboration-architecture)
+3. [Installing & Configuring Git](#3-installing--configuring-git)
+4. [SSH Authentication Setup](#4-authentication-setup-using-ssh)
+5. [Creating Personal Repositories](#5-creating-personal-repository)
+6. [Forking Existing Repositories](#6-forking-existing-repositories)
+7. [Adding Collaborators](#7-adding-collaborators)
+8. [Branch Workflow](#8-branch-workflow)
+9. [Feature Development Workflow](#9-feature-development-workflow)
+10. [Professional Commit Standards](#10-professional-commit-standards)
 11. Push Workflow
 12. Pull Request Workflow
 13. Syncing Forks with Upstream
@@ -47,9 +45,9 @@ This session provides a complete practical guide for:
 
 ---
 
-# 1. Git Fundamentals
+## 1. Git Fundamentals
 
-## What is Git?
+### What is Git?
 
 Git is a distributed `version control` system developed to track changes in source code during software development.
 
@@ -62,9 +60,7 @@ Git allows developers to:
 - Create isolated feature branches
 - Merge changes safely
 
----
-
-## Why Git is Important
+### Why Git is Important
 
 Without Git:
 
@@ -83,9 +79,13 @@ Git solves these problems by providing:
 
 ---
 
-# 2. Understanding GitHub Collaboration Architecture
+## 2. GitHub Collaboration Architecture
 
-## Standard Collaboration Flow
+Git is the version control system.
+
+GitHub is the cloud platform where repositories are hosted.
+
+### Standard Collaboration Flow
 
 ```text
 Developer Machine (Computer)
@@ -101,9 +101,7 @@ Code Review
 Merge to Main Branch
 ```
 
----
-
-# Important Terminologies
+### Important Terminologies
 
 | Term         | Meaning                          |
 | ------------ | -------------------------------- |
@@ -120,31 +118,35 @@ Merge to Main Branch
 
 ---
 
-# 3. Installing & Configuring Git
+## 3. Installing & Configuring Git
 
-## Verify Installation
+### Install Git
+
+Download Git:
+
+https://git-scm.com/downloads
+
+### Verify Installation
 
 ```bash
 git --version
 ```
 
----
+### Configure Git Globally
 
-## Configure Git Globally
-
-### Set Username
+#### Set Username
 
 ```bash
 git config --global user.name "Your Name"
 ```
 
-### Set Email
+#### Set Email
 
 ```bash
 git config --global user.email "your-email@example.com"
 ```
 
-### Verify Configuration
+#### Verify Configuration
 
 ```bash
 git config --list
@@ -152,103 +154,144 @@ git config --list
 
 ---
 
-# 4. Authentication Setup Using SSH
+## 4. Authentication Setup Using SSH
 
-## Generate SSH Key
+### Generate SSH Key
 
 ```bash
 ssh-keygen -t ed25519 -C "your-email@example.com"
 ```
 
----
-
-## Start SSH Agent
+### Start SSH Agent
 
 ```bash
 eval "$(ssh-agent -s)"
 ```
 
----
-
-## Add SSH Key
+### Add SSH Key
 
 ```bash
 ssh-add ~/.ssh/id_ed25519
 ```
 
----
-
-## Copy SSH Public Key
+### Copy SSH Public Key
 
 ```bash
 cat ~/.ssh/id_ed25519.pub
 ```
 
----
+### Add SSH Key to GitHub
 
-# 5. Creating a Personal Repository
+Go to:
 
-## Clone Repository
+https://github.com/settings/keys
+
+### Test SSH Connection
 
 ```bash
-git clone git@github.com:username/repository-name.git
+ssh -T git@github.com
 ```
 
 ---
 
-## Navigate Into Project
+## 5. Creating Personal Repository
 
-```bash
-cd folder-name
+### Create Repository on GitHub
+
+Example:
+
+```text
+repo.new → project-name
 ```
 
----
+### Navigate Into Project
 
-## Initialize Project
+```bash
+cd project
+```
+
+### Initialize Project
 
 ```bash
 npm init -y
 ```
 
----
-
-## Create README
+### Create README
 
 ```bash
 touch README.md
 ```
 
----
-
-## Initial Commit
+### Stage Changes
 
 ```bash
 git add .
+```
+
+### Commit Changes
+
+```bash
 git commit -m "init: Initial project setup"
+```
+
+### Push Code
+
+```bash
 git push origin main
 ```
 
----
+#### OR,
 
-# 6. Working on Existing Projects Using Fork
+## Cloning Shared Repository
 
-## Clone Your Fork
+### Clone Repository
+
+#### SSH:
 
 ```bash
-git clone git@github.com:your-username/project.git
+git clone git@github.com:username/project.git
+```
+
+#### HTTPS:
+
+```bash
+git clone https://github.com/username/project.git
+```
+
+![Clone Repository](images/clone-repository.png)
+
+## Navigate into Project
+
+```bash
+cd project
+```
+
+## Pull Latest Main Branch
+
+```bash
+git checkout main
+git pull origin main
 ```
 
 ---
 
-## Add Upstream Remote
+## 6. Forking Existing Repositories
+
+### Clone Your Fork
+
+![Fork Repository](images/fork-repository.png)
+
+```bash
+git clone git@github.com:username/project.git
+```
+
+### Add Upstream Remote
 
 ```bash
 git remote add upstream https://github.com/original-owner/project.git
 ```
 
----
-
-## Verify Remotes
+### Verify Remotes
 
 ```bash
 git remote -v
@@ -256,57 +299,123 @@ git remote -v
 
 ---
 
-# 7. Branch Workflow
+# 7. Adding Collaborators
 
-## Create Feature Branch
+### Why Collaborators Matter
+
+Collaborators allow multiple developers to:
+
+- Push code
+- Create branches
+- Review Pull Requests
+- Collaborate efficiently
+
+### Add Collaborator
+
+Navigate to:
+
+```text
+Repository → Settings → Collaborators and teams
+```
+
+Click:
+
+```text
+Add people
+```
+
+![Add  Collaborators](images/add-collaborators.png)
+
+#### Search GitHub username or email.
+
+Example:
+
+```text
+touhidcodes
+```
+
+Click:
+
+```text
+Add collaborator
+```
+
+![Add  People](images/add-people.png)
+
+### Collaborator Accepts Invitation
+
+After accepting the invitation, collaborators gain repository access.
+
+---
+
+## 8. Branch Workflow
+
+### Never Work Directly on Main
+
+Always create feature branches.
+
+### Create Feature Branch
 
 ```bash
 git checkout -b feature/login-page
 ```
 
-OR
+#### OR,
 
 ```bash
 git switch -c feature/login-page
 ```
 
----
-
-## Check Current Branch
+### Check Current Branch
 
 ```bash
 git branch
 ```
 
----
+### Branch Naming Convention
 
-# 8. Working on Features
-
-## Create File
-
-```bash
-touch login.js
+```text
+feature/user-authentication
+feature/payment-system
+fix/navbar-overflow
+refactor/api-service
+docs/setup-guide
 ```
 
 ---
 
-## Check Status
+## 9. Feature Development Workflow
+
+### Develop Features
+
+Example tasks:
+
+- Create APIs
+- Build UI
+- Add validation
+- Write tests
+
+### Check Changes
 
 ```bash
 git status
 ```
 
----
-
-## Add Changes
+### Stage Files
 
 ```bash
 git add .
 ```
 
----
+#### OR,
 
-## Commit Changes
+### Stage Specific File
+
+```bash
+git add src/auth/login.ts
+```
+
+### Commit Changes
 
 ```bash
 git commit -m "feat: add login page functionality"
@@ -314,20 +423,28 @@ git commit -m "feat: add login page functionality"
 
 ---
 
-# 9. Professional Commit Standards
+## 10. Professional Commit Standards
 
-## Good Commit Examples
+### Bad Commit Messages
+
+```text
+updated code
+done
+final work
+```
+
+### Good Commit Examples
 
 ```text
 feat: implement JWT authentication
 fix: resolve navbar responsiveness
 docs: update installation guide
-refactor: optimize payment service
+ref: optimize payment service
 ```
 
 ---
 
-# 10. Push Workflow
+# 11. Push Workflow
 
 ## Push Feature Branch
 
