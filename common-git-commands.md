@@ -328,3 +328,5 @@ git reset --soft HEAD~1
 ```bash
 git reset --hard HEAD~1
 ```
+
+**Pro Tip:** Use **`git status`** constantly between running these commands to keep a clear mental model of your project state.
