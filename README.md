@@ -869,3 +869,5 @@ git remote show origin
 - https://www.conventionalcommits.org/en/v1.0.0/
 
 This documentation represents the industry-standard GitHub collaboration model used across modern software companies and open-source ecosystems.
+
+### Prepared with ❤️ by [touhidcodes](https://github.com/touhidcodes)
